@@ -17,7 +17,7 @@ public class MaxSideLength {
     // left and right are the upper and lower bounds of the array
     public double FindClosestPair (Point[] X, Point[] Y, int left, int right){
         // base case
-        if (right-left<=3){
+        if (right - left <= 3){
             double closestPairDistance = Double.MAX_VALUE;
             for (int i = left; i < right; i++){
                 for (int j = i+1 ; j <= right; j++){
@@ -37,11 +37,11 @@ public class MaxSideLength {
         // find the minimum distance between the two halves
         double delta = Math.min(deltaLeft,deltaRight);
         // create an array of points that are far away midPoint by delta horizontally
-        Point[] YStrip = new Point[right - left];
+        Point[] YStrip = new Point[Y.length];
         int stripSize = 0;
-        for (int i=left; i<right; i++){
-            if (Math.abs(Y[i].x-midPoint.x)<delta)
-                YStrip[stripSize++] = Y[i];
+        for (Point point : Y) {
+            if (Math.abs(point.x - midPoint.x) < delta)
+                YStrip[stripSize++] = point;
         }
         // find the closest pair of points in the strip
         double deltaStrip = FindClosestPairStrip(YStrip,stripSize,delta);
